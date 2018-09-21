@@ -1,6 +1,6 @@
 import axios from 'axios';
-
 import {GET_PROFILE ,GET_PROFILES , PROFILE_LOADING , CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER} from './types';
+import {clearErrors} from './postActions';
 
 //Get current profile
 export const getCurrentProfile = () => dispatch =>{
@@ -66,6 +66,7 @@ export const deleteAccount = () => dispatch => {
 
 //Create Profile
 export const createProfile = (profileData, history) => dispatch =>{
+  dispatch(clearErrors());
   axios
     .post('/api/profile', profileData)
     .then(res=> history.push('/dashboard'))
